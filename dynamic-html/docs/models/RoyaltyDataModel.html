@@ -1,0 +1,92 @@
+
+<h2>RoyaltyDataModel</h2>
+<ul class="parameter">
+  <li class="param-required-false">songId : String
+    <br/>Song ID
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">songTitle : String
+    <br/>If the sale occurred as a song purchase and not an entire album, the song name that was purchased shows (see note above for Release Title)
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">label : String
+    <br/>The label listed on the release, song or ringtone
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">postedDate : Date
+    <br/>The date that the report appeared in your account YYYY-MM-DD formate
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">storeName : String
+    <br/>The digital store that paid you for the reported sales period
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">countryofSale : String
+    <br/>The territory of the store where the sale occurred
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">perfSource : String
+    <br/>The source of performance like RADIO | APPLE FAMILY | FACEBOOK | GOOGLE PLAY RAD etc
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">unitsSold : Integer
+    <br/>The no of of albums, songs or ringtones sold in a reporting day
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">perUnitPrice : Double
+    <br/>The price of 1 unit that sold in that stated country&#x27;s currency
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-true">totalEarned : Double
+    <br/>The amount you received after the stated exchange rate
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">currency : String
+    <br/>This will always be USD since we pay out in US Dollars only
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">releaseType : String
+    <br/>album, song or ringtone (a single is reported as a song sale)
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">releaseTitle : String
+    <br/>The title of the album, song or ringtone
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">upc : String
+    <br/>Universal Product Code
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">optionalUPC : String
+    <br/>Optional Universal Product Code
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">optionalISRC : String
+    <br/>Optional International Standard Recording Code(12-character, alphanumeric code)
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">salesType : String
+    <br/>Download or Stream
+  </li>
+</ul>
+<ul class="parameter">
+  <li class="param-required-false">extensions : Map
+    <br/>Extensions column for additional fields
+  </li>
+</ul>
