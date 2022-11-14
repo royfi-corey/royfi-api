@@ -1,0 +1,836 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Royfi API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>Royfi API</h1>
+    <div class="app-desc">Royfi API</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 1.0</div>
+    
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+    <ol>
+      <li>APIKey KeyParamName:Authorization KeyInQuery:false KeyInHeader:true</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Authenticate">Authenticate</a></h4>
+  <ul>
+  <li><a href="#apiAuthenticateLoginPost"><code><span class="http-method">post</span> /api/Authenticate/Login</code></a></li>
+  </ul>
+  <h4><a href="#Payments">Payments</a></h4>
+  <ul>
+  <li><a href="#apiPaymentsAddTransactionPost"><code><span class="http-method">post</span> /api/Payments/AddTransaction</code></a></li>
+  <li><a href="#apiPaymentsBulkInsertPost"><code><span class="http-method">post</span> /api/Payments/BulkInsert</code></a></li>
+  </ul>
+  <h4><a href="#Royalty">Royalty</a></h4>
+  <ul>
+  <li><a href="#apiRoyaltyBulkInsertPost"><code><span class="http-method">post</span> /api/Royalty/BulkInsert</code></a></li>
+  <li><a href="#apiRoyaltyCumulativeDataPost"><code><span class="http-method">post</span> /api/Royalty/CumulativeData</code></a></li>
+  </ul>
+  <h4><a href="#User">User</a></h4>
+  <ul>
+  <li><a href="#apiUserAddAsyncPost"><code><span class="http-method">post</span> /api/User/AddAsync</code></a></li>
+  </ul>
+
+  <h1><a name="Authenticate">Authenticate</a></h1>
+  <div class="method"><a name="apiAuthenticateLoginPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/Authenticate/Login</code></pre></div>
+    <div class="method-summary">Get JWT Token for Authorization (<span class="nickname">apiAuthenticateLoginPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#LoginModel">LoginModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TokenResponse">TokenResponse</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "message" : "message",
+  "token" : "token"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#TokenResponse">TokenResponse</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">401</h4>
+    Unauthorized
+        <a href="#String">String</a>
+    <h4 class="field-label">403</h4>
+    Forbidden
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Server Error
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Payments">Payments</a></h1>
+  <div class="method"><a name="apiPaymentsAddTransactionPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/Payments/AddTransaction</code></pre></div>
+    <div class="method-summary">Add Payment transaction (<span class="nickname">apiPaymentsAddTransactionPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#PaymentModel">PaymentModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Payment details as an Object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : { },
+  "message" : "message",
+  "status" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">403</h4>
+    Artist locked
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Partner | Artist not found in RoyFi system
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiPaymentsBulkInsertPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/Payments/BulkInsert</code></pre></div>
+    <div class="method-summary">IList of Payment transactions (<span class="nickname">apiPaymentsBulkInsertPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#PaymentsModel">PaymentsModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; IList of Payment details as an Object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : { },
+  "message" : "message",
+  "status" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">403</h4>
+    Artist locked
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Partner | Artist not found in RoyFi system
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Royalty">Royalty</a></h1>
+  <div class="method"><a name="apiRoyaltyBulkInsertPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/Royalty/BulkInsert</code></pre></div>
+    <div class="method-summary">Add Artist Royalty Data (<span class="nickname">apiRoyaltyBulkInsertPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#ArtistRoyaltyData">ArtistRoyaltyData</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; RoyaltyData details as an IList </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : { },
+  "message" : "message",
+  "status" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Partner | Artist not found in RoyFi system
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiRoyaltyCumulativeDataPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/Royalty/CumulativeData</code></pre></div>
+    <div class="method-summary">Add Artist Cumulative Data (<span class="nickname">apiRoyaltyCumulativeDataPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#CumulativeData">CumulativeData</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; RoyaltyData details as an IList </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : { },
+  "message" : "message",
+  "status" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#ObjectResponseMessage">ObjectResponseMessage</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Partner | Artist not found in RoyFi system
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="User">User</a></h1>
+  <div class="method"><a name="apiUserAddAsyncPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/User/AddAsync</code></pre></div>
+    <div class="method-summary">Adding a new User (<span class="nickname">apiUserAddAsyncPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json-patch+json</code></li>
+      <li><code>application/json</code></li>
+      <li><code>text/json</code></li>
+      <li><code>application/*+json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#RegistrationModel">RegistrationModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; User details as an Object </div>
+                </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#UserResponseMessage">UserResponseMessage</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "data" : "",
+  "message" : "message",
+  "status" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#UserResponseMessage">UserResponseMessage</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#String">String</a>
+    <h4 class="field-label">404</h4>
+    Not found
+        <a href="#String">String</a>
+    <h4 class="field-label">409</h4>
+    User already exists in the RoyFi system
+        <a href="#String">String</a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#String">String</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#ArtistCumulativeData"><code>ArtistCumulativeData</code></a></li>
+    <li><a href="#ArtistRoyaltyData"><code>ArtistRoyaltyData</code></a></li>
+    <li><a href="#CumulativeData"><code>CumulativeData</code></a></li>
+    <li><a href="#LoginModel"><code>LoginModel</code></a></li>
+    <li><a href="#ObjectResponseMessage"><code>ObjectResponseMessage</code></a></li>
+    <li><a href="#PaymentDataModel"><code>PaymentDataModel</code></a></li>
+    <li><a href="#PaymentModel"><code>PaymentModel</code></a></li>
+    <li><a href="#PaymentsModel"><code>PaymentsModel</code></a></li>
+    <li><a href="#RegistrationModel"><code>RegistrationModel</code></a></li>
+    <li><a href="#RoleUser"><code>RoleUser</code></a></li>
+    <li><a href="#RoyaltyDataModel"><code>RoyaltyDataModel</code></a></li>
+    <li><a href="#SalesPeriod"><code>SalesPeriod</code></a></li>
+    <li><a href="#TokenResponse"><code>TokenResponse</code></a></li>
+    <li><a href="#User"><code>User</code></a></li>
+    <li><a href="#UserResponseMessage"><code>UserResponseMessage</code></a></li>
+    <li><a href="#UserRole"><code>UserRole</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="ArtistCumulativeData"><code>ArtistCumulativeData</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">salesPeriod (optional)</div><div class="param-desc"><span class="param-type"><a href="#"></a></span> Monthly-1|Quarterly-3|Half-Yearly-6|Yearly-12 </div>
+<div class="param">postedDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> The date that the report appeared in your account YYYY-MM-DD formate format: date-time</div>
+<div class="param">totalEarned (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> The amount you received after the stated exchange rate format: double</div>
+<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> This will always be USD since we pay out in US Dollars only </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ArtistRoyaltyData"><code>ArtistRoyaltyData</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Represents a RoyaltyDataList model</div>
+    <div class="field-items">
+      <div class="param">partnerName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Partner </div>
+<div class="param">partnerEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Partner EmailId belongs to Royfi format: email</div>
+<div class="param">artistName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Artist </div>
+<div class="param">artistEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Artist EmailId belongs to Royfi format: email</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#RoyaltyDataModel">array[RoyaltyDataModel]</a></span> IList of RoyaltyData </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CumulativeData"><code>CumulativeData</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">partnerName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Partner </div>
+<div class="param">partnerEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Partner EmailId belongs to Royfi format: email</div>
+<div class="param">artistName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Artist </div>
+<div class="param">artistEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Artist EmailId belongs to Royfi format: email</div>
+<div class="param">artistData (optional)</div><div class="param-desc"><span class="param-type"><a href="#ArtistCumulativeData">array[ArtistCumulativeData]</a></span> Artist Cumulative Royalty Data </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LoginModel"><code>LoginModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>LoginModel</div>
+    <div class="field-items">
+      <div class="param">clientId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">clientSecret </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="ObjectResponseMessage"><code>ObjectResponseMessage</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">Object</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PaymentDataModel"><code>PaymentDataModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">artistName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Artist </div>
+<div class="param">artistEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Artist EmailId belongs to Royfi format: email</div>
+<div class="param">paidAmount </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Paid Amount format: double</div>
+<div class="param">paidDate </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> Transaction Date format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PaymentModel"><code>PaymentModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Payment Model</div>
+    <div class="field-items">
+      <div class="param">partnerName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Partner </div>
+<div class="param">partnerEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Partner EmailId belongs to RoyFi format: email</div>
+<div class="param">artistName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Artist </div>
+<div class="param">artistEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Artist EmailId belongs to RoyFi format: email</div>
+<div class="param">paidAmount </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Paid Amount format: double</div>
+<div class="param">paidDate </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> Transaction Date format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PaymentsModel"><code>PaymentsModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">partnerName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name of the Partner </div>
+<div class="param">partnerEmail </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Partner EmailId belongs to Royfi format: email</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#PaymentDataModel">array[PaymentDataModel]</a></span> IList of Payment Transactions Data </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RegistrationModel"><code>RegistrationModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">firstName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">artistName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">emailAddress </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: email</div>
+<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: tel</div>
+<div class="param">address1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zipCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RoleUser"><code>RoleUser</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">authLevel (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deleted (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">rank (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">isDefault (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RoyaltyDataModel"><code>RoyaltyDataModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">songId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Song ID </div>
+<div class="param">songTitle </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> If the sale occurred as a song purchase and not an entire album, the song name that was purchased shows (see note above for Release Title) </div>
+<div class="param">label (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The label listed on the release, song or ringtone </div>
+<div class="param">postedDate (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> The date that the report appeared in your account YYYY-MM-DD formate format: date-time</div>
+<div class="param">storeName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The digital store that paid you for the reported sales period </div>
+<div class="param">countryofSale </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The territory of the store where the sale occurred </div>
+<div class="param">perfSource (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The source of performance like RADIO | APPLE FAMILY | FACEBOOK | GOOGLE PLAY RAD etc </div>
+<div class="param">unitsSold (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The no of of albums, songs or ringtones sold in a reporting day format: int32</div>
+<div class="param">perUnitPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> The price of 1 unit that sold in that stated country&#x27;s currency format: double</div>
+<div class="param">totalEarned </div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> The amount you received after the stated exchange rate format: double</div>
+<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> This will always be USD since we pay out in US Dollars only </div>
+<div class="param">releaseType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> album, song or ringtone (a single is reported as a song sale) </div>
+<div class="param">releaseTitle (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The title of the album, song or ringtone </div>
+<div class="param">upc (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Universal Product Code </div>
+<div class="param">optionalUPC (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional Universal Product Code </div>
+<div class="param">optionalISRC (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional International Standard Recording Code(12-character, alphanumeric code) </div>
+<div class="param">salesType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Download or Stream </div>
+<div class="param">extensions (optional)</div><div class="param-desc"><span class="param-type"><a href="#object">map[String, Object]</a></span> Extensions column for additional fields </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SalesPeriod"><code>SalesPeriod</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TokenResponse"><code>TokenResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>TokenResponse</div>
+    <div class="field-items">
+      <div class="param">token </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#UUID">UUID</a></span>  format: uuid</div>
+<div class="param">username (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">email (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">firstName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">artistName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">deleted (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">active (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">emailConfirmed (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">createdOn (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">lastModifiedOn (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">roles (optional)</div><div class="param-desc"><span class="param-type"><a href="#UserRole">array[UserRole]</a></span>  </div>
+<div class="param">phone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">address2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">zipCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserResponseMessage"><code>UserResponseMessage</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#"></a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="UserRole"><code>UserRole</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">role (optional)</div><div class="param-desc"><span class="param-type"><a href="#"></a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
